@@ -28,6 +28,7 @@ def get_video_length(file):
     duration = 0
     if file is not None:
         duration = round(clip.duration / 60, 2)
+        clip.close()
     return duration
 
 
@@ -66,8 +67,14 @@ def select_sub_folder():
             print(f'{video} => {bcolors.O}{time} minutes{bcolors.W}')
             all_time += time
 
-    print(f'Total time: {round(all_time, 1)}')
-    print(f'Total day(24): {round(all_time/24, 1)}')
+    total_minutes = round(all_time,1)
+    total_hours = round(all_time/60,1)
+    total_days = round(total_hours/24,1)
+    total_working_days = round(total_hours/12,1)
+    print(f'{bcolors.P}Total minutes: {total_minutes} minutes{bcolors.W}')
+    print(f'{bcolors.B}Total hours: {total_hours} hours{bcolors.W}')
+    print(f'{bcolors.G}Total days (12): {total_working_days} days{bcolors.W}')
+    print(f'{bcolors.R}Total days (24): {total_days} days{bcolors.W}')
 
 
 select_sub_folder()
